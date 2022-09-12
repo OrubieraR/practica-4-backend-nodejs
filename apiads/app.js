@@ -50,6 +50,7 @@ app.use(function(err, req, res, next) {
   console.log(isApiContent);
   if (isApiContent) {
     res.json({ok:false,error:err.message});
+    return;
   }
   
   // render the error page
@@ -59,8 +60,9 @@ app.use(function(err, req, res, next) {
   
 });
 
+// Devolviendo un error en JSON para la api.
 function isAPI(req){
-  console.log('Req es igual a '+req.originalUrl);
+  // console.log('Req es igual a '+req.originalUrl);
   return req.originalUrl.indexOf('/api') === 0;
 }
 

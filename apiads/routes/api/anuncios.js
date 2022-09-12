@@ -23,15 +23,40 @@ router.get('/', function(req, res, next){
     });
 });
 
-// Actualización de un anuncio
+// Creación de un anuncio. Utilizando el método post porque va en el body del post.
+router.post('/', function(req, res, next){
+    // console.log(req.body);
+    var anuncio = new Anuncio(req.body);
+    anuncio.save(function (err, anuncioGuardado){
+        if (err) {
+            return next(err);
+        }
+        res.json({ok:true,anuncio:anuncioGuardado});
+    });
+});
 
+// Actualización de un anuncio. Con la característica de express de recibir un dato :id.
+router.put('/:id', (req, res, next)=>{
+    let id = req.params.id;
+    Anuncio.updateOne({_id:id}, req.body, function (err, anuncio){
+        if (err) {
+            return next(err);
+        }
+        res.json({ok:true,anuncio:anuncio});
+    });
+});
 
-// Creación de un anuncio
+// Borrado de un anuncio.
+router.delete('/:id', (req, res, next)=>{
+    let id = req.params.id;
+    Anuncio.remove({_id:id}, function (err, result){
+        if (err) {
+            return next(err);
+        }
+        res.json({ok:true,result:result});
+    });
 
-
-
-// Borrado de un anuncio
-
+});
 
 
 
