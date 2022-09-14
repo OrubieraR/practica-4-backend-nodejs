@@ -6,6 +6,29 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Listado de anuncios.</p>
+
+    <!--div><%= results %></div-->
+    
+    <br>
+    <% const url = 'http://localhost:3000/images/';
+    for (let i = 0; i < results.length; i++) {%>
+    
+    <div>
+      <p>Nombre del artículo: <%= results[i].nombre %></p>
+
+    <p>Precio: <%= results[i].precio %></p>
+    <img src="<%= url+results[i].foto %>" alt="Foto de <%= results[i].nombre %>" width="200" height="200">
+    
+    <% if (results[i].venta){ %>
+      <p>Este producto está en venta.</p>
+    <% } else { %>
+      <p>Se busca comprador para este producto.</p>
+    <% } %>
+    <p>Etiquetado en: <%= results[i].tags %></p>
+    </div>
+    <hr>
+    <br><br>
+    <% } %>
   </body>
 </html>

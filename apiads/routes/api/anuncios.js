@@ -9,18 +9,71 @@ const mongoose = require('mongoose');
 const Anuncio = mongoose.model('Anuncio');
 
 // Middleware que devuelva una lista de anuncios.
-router.get('/', function(req, res, next){
-    // Operación asíncrona con Mongoose.
-    Anuncio.find().exec(function(err, list){
-        if (err) {
-            next(err);
-            return;
-        }
-        res.json({
-            ok: true,
-            list: list
-        });
-    });
+// router.get('/', function(req, res, next){
+//     // Operación asíncrona con Mongoose.
+//     Anuncio.find().exec(function(err, list){
+//         if (err) {
+//             next(err);
+//             return;
+//         }
+//         res.json({
+//             ok: true,
+//             list: list
+//         });
+//     });
+// });
+
+// Middleware que devuelve la lista de anuncios respondiendo a un filtro dado usando el método añadido en Anuncio.js
+router.get('/', async (req, res, next)=>{
+try {
+    // Filtros.
+    const nombre = req.query.nombre;
+    const precio = req.query.precio;
+    const venta = req.query.venta;
+    const foto = req.query.foto;
+    const tags = req.query.tags;
+
+    // paginación
+    const skip = req.query.skip;
+    const limit = req.query.limit;
+    // selección de campos
+    const fields = req.query.fields;
+    const sort = req.query.sort;
+
+    // Creación de un filtro vacío
+    const filtro = {}
+
+
+    if (nombre) {
+        filtro.nombre = nombre;
+      }
+  
+    if (precio) {
+        filtro.precio = precio;
+    }
+    
+    if (venta) {
+        filtro.venta = venta;
+    }
+
+    if (foto) {
+        filtro.foto = foto;
+    }
+
+    if (tags) {
+        filtro.tags = tags;
+    }
+    
+    
+    const anuncios = await Anuncio.list(filtro, skip, limit, fields, sort);
+
+    res.json({ results: anuncios });
+} catch (err) {
+    next(err);
+}
+    
+
+    
 });
 
 // Creación de un anuncio. Utilizando el método post porque va en el body del post.
