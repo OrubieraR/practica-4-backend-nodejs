@@ -14,4 +14,5 @@ mongoose.connection.once('open', () => {
 
 mongoose.connect('mongodb://localhost/practica-4');
 
+// Exportar para poder llamar a este módulo desde otras partes, por ejemplo initdb.js.
 module.exports = mongoose.connection;

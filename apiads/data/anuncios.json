@@ -1,0 +1,36 @@
+{
+  "list": [
+    {
+      "_id": "631e1e5444e03257bed5cce7",
+      "nombre": "Bicicleta",
+      "venta": true,
+      "precio": 250,
+      "foto": "bicicleta.jpg",
+      "tags": ["lifestyle", "motor"]
+    },
+    {
+      "_id": "631e1e9944e03257bed5cce8",
+      "nombre": "Iphone 12",
+      "venta": false,
+      "precio": 50,
+      "foto": "iphone.jpg",
+      "tags": ["lifestyle", "mobile"]
+    },
+    {
+      "_id": "631e1f9a44e03257bed5cce9",
+      "nombre": "Portatil 15 pulgadas",
+      "venta": true,
+      "precio": 530,
+      "foto": "portatil.jpg",
+      "tags": ["lifestyle", "work"]
+    },
+    {
+      "_id": "631e1fe444e03257bed5ccea",
+      "nombre": "Coche de segunda mano",
+      "venta": false,
+      "precio": 5300,
+      "foto": "coche.jpg",
+      "tags": ["lifestyle", "motor"]
+    }
+  ]
+}

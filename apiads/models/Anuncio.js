@@ -33,3 +33,6 @@ const Anuncio = mongoose.model('Anuncio', anuncioSchema);
 // En otras partes de la app se podrá usar mongoose para recuperar el modelo.
 // Hay que añadirlo en app.js
 // mongoose.model('Anuncio', anuncioSchema);
+
+// exportamos el modelo (opcional)
+module.exports = Anuncio;
